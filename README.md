@@ -1,64 +1,147 @@
-# E_Commerce-churn-pridiction
-# E-commerce Customer Satisfaction Prediction
+Customer Churn Prediction
+Project Overview
 
-💡 **Project Overview**
+Customer churn is a major challenge for businesses. Losing existing customers can significantly impact revenue, and acquiring new customers is usually more expensive than retaining current ones. Because of this, companies try to identify customers who might leave their service so they can take action early.
 
-This project is focused on predicting **customer satisfaction levels** (Satisfied, Neutral, Unsatisfied) for an E-commerce business using **Machine Learning**. The goal is to help businesses understand customer behavior and take actionable decisions to improve customer experience.
+In this project, I built a machine learning model to predict customer churn. The goal was to create a simple but structured machine learning pipeline that analyzes customer data and predicts whether a customer is likely to churn.
 
----
+The project demonstrates an end-to-end machine learning workflow, including data preprocessing, handling class imbalance, training a model, and evaluating performance.
 
-## 🚀 Project Highlights
+Dataset
 
-- **Objective:** Predict customer satisfaction based on behavior and purchase history.
-- **Dataset:** Customer demographic & transactional data including Age, Gender, Total Spend, Items Purchased, Days Since Last Purchase, Discount Applied, City, and Membership Type.
-- **Tools & Libraries:** Python, Pandas, Numpy, Scikit-learn, Imbalanced-learn (SMOTE), Matplotlib, Seaborn
+The dataset contains information about customers and their usage of services. These features help the model understand patterns related to churn behavior.
 
----
+Some example features include:
 
-## 🔧 Data Preprocessing & Feature Engineering
+Customer demographics
 
-1. **Missing Values Handling:** Filled missing Age with median, Gender with mode.
-2. **Encoding:** Label encoding for Gender, one-hot encoding for City & Membership Type.
-3. **Feature Engineering:**  
-   - `avg_order_value = Total Spend / (Items Purchased + 1)`  
-   - `recency = Days Since Last Purchase`  
-   - `Discount Applied` encoded as 0/1
-4. **Scaling:** StandardScaler applied on numeric features.
-5. **Handling Imbalance:** SMOTE used to balance class distribution.
-6. **Removed Target Leakage:** Avoided features like `clv`, `monetary`, `frequency` that directly correlate with satisfaction.
+Account and contract information
 
----
+Service usage details
 
-## 🛠 Machine Learning Model
+Payment methods
 
-- **Model Used:** Random Forest Classifier
-- **Hyperparameters:** Tuned for best performance (n_estimators=400, max_depth=12)
-- **Evaluation:** Accuracy, Classification Report, Confusion Matrix
-- **Visualization:** Feature Importance, Feature Correlation Heatmap
+Customer tenure
 
----
+Target Variable
 
-## 📊 Results
+Churn
 
-- **Model Accuracy:** 96% on test set ✅
-- **Key Influencing Features:**  
-  `recency`, `average order value`, `age`, `discount applied`
-- **Visual Insights:** Feature correlation heatmap & importance chart
-  
+1 → Customer churned
 
----
+0 → Customer stayed
 
-## 📈 Learning Outcomes
+The dataset is loaded and explored using pandas.
 
-- Importance of **feature engineering** for improving model accuracy
-- Handling **imbalanced datasets** using SMOTE
-- Avoiding **target leakage** to prevent overfitting
-- Translating raw E-commerce data into **actionable insights**
-- Data visualization for **better understanding of features and model performance**
+Methodology
+Data Preprocessing
 
----
+Before training the model, several preprocessing steps were applied:
 
+Handling missing values
 
+Encoding categorical variables
 
+Preparing features for training
 
+Splitting the dataset into training and testing sets
 
+These steps ensure the dataset is suitable for machine learning models.
+
+Handling Class Imbalance
+
+In many churn datasets, the number of customers who stay is much larger than the number who leave. This creates a class imbalance problem.
+
+To handle this, the project uses:
+
+SMOTE (Synthetic Minority Oversampling Technique)
+
+SMOTE generates synthetic samples for the minority class, helping the model learn churn patterns more effectively.
+
+Machine Learning Model
+
+The model used in this project is:
+
+Gradient Boosting Classifier
+
+Gradient Boosting is an ensemble learning method that combines multiple weak learners to build a stronger predictive model. It works well for structured datasets like customer churn data.
+
+The model is trained after applying SMOTE to balance the dataset.
+
+Technologies Used
+
+Python
+
+pandas
+
+numpy
+
+scikit-learn
+
+imbalanced-learn (SMOTE)
+
+seaborn
+
+matplotlib
+
+Model Evaluation
+
+The model performance is evaluated using several metrics:
+
+Accuracy
+
+Precision
+
+Recall
+
+F1 Score
+
+A confusion matrix is also used to visualize the model's predictions and performance.
+
+How to Run the Project
+1 Clone the repository
+git clone https://github.com/yourusername/customer-churn-prediction.git
+2 Move to the project folder
+cd customer-churn-prediction
+3 Install required libraries
+pip install pandas numpy scikit-learn imbalanced-learn seaborn matplotlib
+4 Run the script
+python churn_model.py
+
+Make sure the dataset path in the script is correct.
+
+Results
+
+The model is able to learn patterns related to customer churn and provides reasonable prediction performance.
+
+Using SMOTE helps improve the model's ability to detect churn cases, which are usually the minority class in the dataset.
+
+The results are visualized using plots such as the confusion matrix and data distribution graphs.
+
+Limitations
+
+Some limitations of this project include:
+
+The dataset size may be limited
+
+Feature engineering could be improved further
+
+Hyperparameter tuning was minimal
+
+Real-world deployment would require further validation
+
+Future Improvements
+
+Possible improvements for this project include:
+
+Hyperparameter tuning for better model performance
+
+Comparing additional models such as Random Forest or XGBoost
+
+Feature importance analysis
+
+Deploying the model using Streamlit or Flask
+
+Creating a dashboard for churn prediction
+
+⭐ If you found this project interesting, feel free to explore the code and share feedback.
